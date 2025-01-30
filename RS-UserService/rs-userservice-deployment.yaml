@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rs-userservice
+  labels:
+    app: rs-userservice
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: rs-userservice
+  template:
+    metadata:
+      labels:
+        app: rs-userservice
+    spec:
+      containers:
+        - name: rs-userservice
+          image: rs-localrepo/rs-userservice:latest
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 8080
+            - containerPort: 8081
+          env:
+            - name: VAULT_ADDR
+              value: "http://192.168.49.3:8200"
+            - name: VAULT_ROLE
+              value: "user-service-role"
+            - name: ASPNETCORE_ENVIRONMENT
+              value: "Development"
+      serviceAccountName: vault-auth

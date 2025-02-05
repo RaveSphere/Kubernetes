@@ -33,5 +33,5 @@ spec:
             - name: ASPNETCORE_ENVIRONMENT
               value: "Production"
             - name: USESWAGGER
-              vale: "True"
+              value: "True"
       serviceAccountName: vault-auth

@@ -18,6 +18,10 @@ spec:
         - name: rs-userservice
           image: rs-localrepo/rs-userservice:latest
           imagePullPolicy: Never
+          resources:
+            limits:
+              memory: "512Mi"
+              cpu: "500m"
           ports:
             - containerPort: 8080
             - containerPort: 8081
@@ -27,5 +31,7 @@ spec:
             - name: VAULT_ROLE
               value: "user-service-role"
             - name: ASPNETCORE_ENVIRONMENT
-              value: "Development"
+              value: "Production"
+            - name: USESWAGGER
+              vale: "True"
       serviceAccountName: vault-auth

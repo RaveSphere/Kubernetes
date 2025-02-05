@@ -32,6 +32,6 @@ spec:
               value: "user-service-role"
             - name: ASPNETCORE_ENVIRONMENT
               value: "Production"
-            - name: USESWAGGER
+            - name: USE_SWAGGER
               value: "True"
       serviceAccountName: vault-auth

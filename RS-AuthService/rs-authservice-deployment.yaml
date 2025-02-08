@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rs-authservice
+  labels:
+    app: rs-authservice
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: rs-authservice
+  template:
+    metadata:
+      labels:
+        app: rs-authservice
+    spec:
+      containers:
+        - name: rs-authservice
+          image: rs-localrepo/rs-authservice:latest
+          imagePullPolicy: Never
+          resources:
+            limits:
+              memory: "512Mi"
+              cpu: "500m"
+          ports:
+            - containerPort: 8080
+            - containerPort: 8081
+          env:
+            - name: VAULT_ADDR
+              value: "http://192.168.49.3:8200"
+            - name: VAULT_ROLE
+              value: "auth-service-role"
+            - name: ASPNETCORE_ENVIRONMENT
+              value: "Production"
+            - name: USE_SWAGGER
+              value: "True"
+      serviceAccountName: vault-auth

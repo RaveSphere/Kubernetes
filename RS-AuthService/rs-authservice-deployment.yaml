@@ -4,6 +4,7 @@ metadata:
   name: rs-authservice
   labels:
     app: rs-authservice
+  namespace: rs-backend
 spec:
   replicas: 1
   selector:

@@ -35,4 +35,4 @@ spec:
               value: "Production"
             - name: USE_SWAGGER
               value: "True"
-      serviceAccountName: vault-auth
+      serviceAccountName: vault-auth-sa
